@@ -1,0 +1,30 @@
+# EarthJev ablation (frac25): 25% of the training patches. Pre-specified ablation, seed 0.
+# Everything else as configs/onejev/msi/earthjev_msi_08b_reben5pct.yaml.
+model: Qwen/Qwen3.5-0.8B
+train: ../../data/earthjev/abl_msi_frac25/train.jsonl
+media_root: ../../data/reben/subset_5pct
+msi_norm: ../../data/reben/subset_5pct/msi_norm.json
+name: msi_abl_frac25
+runs_dir: ../../runs/onejev
+dtype: bfloat16
+multimodal: true
+full_finetune: true
+train_vision: true
+lr: 5.0e-06
+epochs: 1
+max_len: 16384
+batch_tokens: 16384
+max_rows: 64
+accum_rows: 64
+brier_weight: 1.0
+warmup_frac: 0.03
+weight_decay: 0.0
+max_grad_norm: 1.0
+augment: true
+pad_options: 0.5
+seed: 0
+log_every: 10
+save_every: 500
+eval_every: 250
+eval_files:
+- val1k=../../data/earthjev/reben5pct_msi/validation_1k.jsonl

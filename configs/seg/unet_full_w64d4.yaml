@@ -1,0 +1,14 @@
+# Segmenter of the U-Net + rules reference: U-Net on 12 S2 bands, CORINE level 2, whole reBEN train split (237,871
+# patches); validation/test = the reBEN 5% subset splits (symlinked into data/reben/train_full). Chosen on validation
+# mIoU. No class weights: the rules need calibrated per-pixel probabilities.
+name: unet_full_w64d4
+data: data/reben/train_full
+level: 2
+seed: 0
+width: 64
+depth: 4
+epochs: 10
+batch_size: 128
+lr: 1.0e-3
+weight_decay: 1.0e-4
+brier_weight: 0.0

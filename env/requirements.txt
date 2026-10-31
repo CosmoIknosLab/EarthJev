@@ -1,0 +1,11 @@
+# Core runtime dependencies (PyTorch is installed separately by build_env.sh
+# from the CUDA-specific index). Exact versions are frozen in requirements.lock.txt.
+numpy>=1.26,<3
+pyyaml>=6.0
+scikit-learn>=1.4
+pandas>=2.1
+matplotlib>=3.8
+tqdm>=4.66
+rasterio>=1.3
+zarr>=2.17
+pytest>=8.0

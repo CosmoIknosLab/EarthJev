@@ -1,0 +1,36 @@
+# EarthJev: OneJev official 0.8B recipe (third_party/OneJev/train/configs/onejev_08b_full.yaml),
+# hyperparameters unchanged, on 12-band Sentinel-2 patches of the reBEN 5% subset (CORINE questions, English).
+# Run with s1geo.msi_sft:  SFT_MODULE=s1geo.msi_sft sbatch scripts/slurm/onejev_sft.sbatch <this file>
+# Changed vs official: data paths, run name/dir, in-training eval set (val_1k), log_every; train_vision + msi_norm:
+# the vision encoder's input layer is widened to 12 channels and trained, the rest of the encoder stays frozen
+# (s1geo.msi). The state holds the image and a fixed sensor description (scripts/data/make_msi_rows.py).
+model: Qwen/Qwen3.5-0.8B
+train: ../../data/earthjev/reben5pct_msi/train.jsonl
+media_root: ../../data/reben/subset_5pct
+msi_norm: ../../data/reben/subset_5pct/msi_norm.json
+name: earthjev_msi_08b_reben5pct
+runs_dir: ../../runs/onejev
+dtype: bfloat16
+multimodal: true
+full_finetune: true
+train_vision: true
+
+lr: 5.0e-6
+epochs: 1
+max_len: 16384
+batch_tokens: 16384
+max_rows: 64
+accum_rows: 64
+brier_weight: 1.0
+warmup_frac: 0.03
+weight_decay: 0.0
+max_grad_norm: 1.0
+
+augment: true
+pad_options: 0.5
+seed: 0
+log_every: 10
+save_every: 500
+eval_every: 250
+eval_files:
+  - val1k=../../data/earthjev/reben5pct_msi/validation_1k.jsonl

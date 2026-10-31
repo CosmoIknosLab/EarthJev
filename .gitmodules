@@ -1,0 +1,3 @@
+[submodule "third_party/OneJev"]
+	path = third_party/OneJev
+	url = https://github.com/OmniJev/OneJev

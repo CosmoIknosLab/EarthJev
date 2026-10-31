@@ -1,0 +1,9 @@
+EarthJev
+Copyright 2026 Domenico Benfenati, Antonio Maria Rinaldi, Cristian Tommasino (University of Naples Federico II)
+
+This repository contains code that builds on:
+- OneJev (OmniJev), Apache License 2.0, https://github.com/OmniJev/OneJev (git submodule, unmodified)
+- Qwen3.5-0.8B (Qwen team, Alibaba), Apache License 2.0, used as the base model
+Data are not redistributed here. Training and evaluation use BigEarthNet v2.0 and BigEarthNet.txt (CDLA-Permissive-1.0),
+whose labels derive from CORINE Land Cover (© European Union, Copernicus Land Monitoring Service), RSVQAxBEN
+(CC-BY-4.0), EuroSAT and EuroSAT-MS (MIT).

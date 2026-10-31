@@ -1,0 +1,306 @@
+# Statistics spec for scripts/analysis/paired_bootstrap.py: test sets, models (one prediction file per seed and
+# test set) and the hypotheses of the paper, fixed before the models were trained. The task-specific models were
+# trained with the same questions and splits (scripts/analysis/submit_msi.sh taskspecific).
+reference: earthjev
+test_sets:
+  corine: data/earthjev/reben5pct_msi/test.jsonl
+  unseen: data/earthjev/reben5pct_msi/test_unseen.jsonl
+  rsvqaxben: data/earthjev/rsvqaxben_test/presence.jsonl
+  bentxt: data/earthjev/bentxt/bench.jsonl
+models:
+  earthjev:
+    name: EarthJev-MSI
+    corine:
+    - runs/eval/msi_earthjev_s0_test/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_test/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_test/probe.logits.jsonl
+    unseen:
+    - runs/eval/msi_earthjev_s0_unseen/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_unseen/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_unseen/probe.logits.jsonl
+    rsvqaxben:
+    - runs/eval/msi_earthjev_s0_rsvqa/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_rsvqa/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_rsvqa/probe.logits.jsonl
+    bentxt:
+    - runs/eval/msi_earthjev_s0_bentxt/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_bentxt/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_bentxt/probe.logits.jsonl
+  earthjev_drop:
+    name: EarthJev-MSI, extra bands zeroed at test
+    corine:
+    - runs/eval/msi_earthjev_s0_test_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_test_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_test_drop/probe.logits.jsonl
+    unseen:
+    - runs/eval/msi_earthjev_s0_unseen_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_unseen_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_unseen_drop/probe.logits.jsonl
+    rsvqaxben:
+    - runs/eval/msi_earthjev_s0_rsvqa_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_rsvqa_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_rsvqa_drop/probe.logits.jsonl
+    bentxt:
+    - runs/eval/msi_earthjev_s0_bentxt_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s1_bentxt_drop/probe.logits.jsonl
+    - runs/eval/msi_earthjev_s2_bentxt_drop/probe.logits.jsonl
+  gensft:
+    name: Qwen3.5-0.8B generative (12 bands)
+    corine:
+    - runs/eval/msi_gensft_s0_test
+    - runs/eval/msi_gensft_s1_test
+    - runs/eval/msi_gensft_s2_test
+    unseen:
+    - runs/eval/msi_gensft_s0_unseen
+    - runs/eval/msi_gensft_s1_unseen
+    - runs/eval/msi_gensft_s2_unseen
+    rsvqaxben:
+    - runs/eval/msi_gensft_s0_rsvqa
+    - runs/eval/msi_gensft_s1_rsvqa
+    - runs/eval/msi_gensft_s2_rsvqa
+    bentxt:
+    - runs/eval/msi_gensft_s0_bentxt
+    - runs/eval/msi_gensft_s1_bentxt
+    - runs/eval/msi_gensft_s2_bentxt
+  gensft_sum:
+    name: Qwen3.5-0.8B generative (12 bands), option scoring (summed)
+    field: logits
+    corine:
+    - runs/eval/msi_gensft_s0_test/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_test/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_gensft_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_gensft_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_bentxt/option_scores.jsonl
+  gensft_norm:
+    name: Qwen3.5-0.8B generative (12 bands), option scoring (length-normalised)
+    field: logits_norm
+    corine:
+    - runs/eval/msi_gensft_s0_test/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_test/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_gensft_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_gensft_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_gensft_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_gensft_s2_bentxt/option_scores.jsonl
+  qwen3vl:
+    name: Qwen3-VL-2B LoRA
+    corine:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_test
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_test
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_test
+    unseen:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_unseen
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_unseen
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_unseen
+    rsvqaxben:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_rsvqa
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_rsvqa
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_rsvqa
+    bentxt:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_bentxt
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_bentxt
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_bentxt
+  qwen3vl_sum:
+    name: Qwen3-VL-2B LoRA, option scoring (summed)
+    field: logits
+    corine:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_bentxt/option_scores.jsonl
+  qwen3vl_norm:
+    name: Qwen3-VL-2B LoRA, option scoring (length-normalised)
+    field: logits_norm
+    corine:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_qwen3-vl-2b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_qwen3-vl-2b_s2_bentxt/option_scores.jsonl
+  internvl3:
+    name: InternVL3-2B LoRA
+    corine:
+    - runs/eval/msi_lora_internvl3-2b_s0_test
+    - runs/eval/msi_lora_internvl3-2b_s1_test
+    - runs/eval/msi_lora_internvl3-2b_s2_test
+    unseen:
+    - runs/eval/msi_lora_internvl3-2b_s0_unseen
+    - runs/eval/msi_lora_internvl3-2b_s1_unseen
+    - runs/eval/msi_lora_internvl3-2b_s2_unseen
+    rsvqaxben:
+    - runs/eval/msi_lora_internvl3-2b_s0_rsvqa
+    - runs/eval/msi_lora_internvl3-2b_s1_rsvqa
+    - runs/eval/msi_lora_internvl3-2b_s2_rsvqa
+    bentxt:
+    - runs/eval/msi_lora_internvl3-2b_s0_bentxt
+    - runs/eval/msi_lora_internvl3-2b_s1_bentxt
+    - runs/eval/msi_lora_internvl3-2b_s2_bentxt
+  internvl3_sum:
+    name: InternVL3-2B LoRA, option scoring (summed)
+    field: logits
+    corine:
+    - runs/eval/msi_lora_internvl3-2b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_internvl3-2b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_internvl3-2b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_bentxt/option_scores.jsonl
+  internvl3_norm:
+    name: InternVL3-2B LoRA, option scoring (length-normalised)
+    field: logits_norm
+    corine:
+    - runs/eval/msi_lora_internvl3-2b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_internvl3-2b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_internvl3-2b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_internvl3-2b_s2_bentxt/option_scores.jsonl
+  earthdial:
+    name: EarthDial-4B LoRA
+    corine:
+    - runs/eval/msi_lora_earthdial4b_s0_test
+    - runs/eval/msi_lora_earthdial4b_s1_test
+    - runs/eval/msi_lora_earthdial4b_s2_test
+    unseen:
+    - runs/eval/msi_lora_earthdial4b_s0_unseen
+    - runs/eval/msi_lora_earthdial4b_s1_unseen
+    - runs/eval/msi_lora_earthdial4b_s2_unseen
+    rsvqaxben:
+    - runs/eval/msi_lora_earthdial4b_s0_rsvqa
+    - runs/eval/msi_lora_earthdial4b_s1_rsvqa
+    - runs/eval/msi_lora_earthdial4b_s2_rsvqa
+    bentxt:
+    - runs/eval/msi_lora_earthdial4b_s0_bentxt
+    - runs/eval/msi_lora_earthdial4b_s1_bentxt
+    - runs/eval/msi_lora_earthdial4b_s2_bentxt
+  earthdial_sum:
+    name: EarthDial-4B LoRA, option scoring (summed)
+    field: logits
+    corine:
+    - runs/eval/msi_lora_earthdial4b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_earthdial4b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_earthdial4b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_bentxt/option_scores.jsonl
+  earthdial_norm:
+    name: EarthDial-4B LoRA, option scoring (length-normalised)
+    field: logits_norm
+    corine:
+    - runs/eval/msi_lora_earthdial4b_s0_test/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_test/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_test/option_scores.jsonl
+    rsvqaxben:
+    - runs/eval/msi_lora_earthdial4b_s0_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_rsvqa/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_rsvqa/option_scores.jsonl
+    bentxt:
+    - runs/eval/msi_lora_earthdial4b_s0_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s1_bentxt/option_scores.jsonl
+    - runs/eval/msi_lora_earthdial4b_s2_bentxt/option_scores.jsonl
+  resnet50:
+    name: ResNet-50 RSVQA (reused, same protocol)
+    corine:
+    - runs/eval/r2_rsvqa_resnet50_s0_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s1_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s2_test/probe.logits.jsonl
+    unseen:
+    - runs/eval/r2_rsvqa_resnet50_s0_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s1_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s2_unseen/probe.logits.jsonl
+    rsvqaxben:
+    - runs/eval/r2_rsvqa_resnet50_s0_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s1_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_resnet50_s2_rsvqa/probe.logits.jsonl
+  swin_t:
+    name: Swin-T RSVQA (reused, same protocol)
+    corine:
+    - runs/eval/r2_rsvqa_swin_t_s0_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s1_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s2_test/probe.logits.jsonl
+    unseen:
+    - runs/eval/r2_rsvqa_swin_t_s0_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s1_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s2_unseen/probe.logits.jsonl
+    rsvqaxben:
+    - runs/eval/r2_rsvqa_swin_t_s0_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s1_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_swin_t_s2_rsvqa/probe.logits.jsonl
+  mambavision_t:
+    name: MambaVision-T RSVQA (reused, same protocol)
+    corine:
+    - runs/eval/r2_rsvqa_mambavision_t_s0_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s1_test/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s2_test/probe.logits.jsonl
+    unseen:
+    - runs/eval/r2_rsvqa_mambavision_t_s0_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s1_unseen/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s2_unseen/probe.logits.jsonl
+    rsvqaxben:
+    - runs/eval/r2_rsvqa_mambavision_t_s0_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s1_rsvqa/probe.logits.jsonl
+    - runs/eval/r2_rsvqa_mambavision_t_s2_rsvqa/probe.logits.jsonl
+  rules:
+    name: U-Net + rules (reference)
+    corine:
+    - runs/eval/r2_rules_test
+hypotheses:
+  H1:
+    type: equivalence
+    margin: 1.0
+    test_set: corine
+    compare:
+    - qwen3vl
+    - internvl3
+    - earthdial
+    - gensft
+  H2:
+    type: superiority
+    test_set: corine
+    compare:
+    - resnet50
+    - swin_t
+    - mambavision_t
+  H3:
+    type: superiority
+    test_set: corine
+    compare:
+    - earthjev_drop

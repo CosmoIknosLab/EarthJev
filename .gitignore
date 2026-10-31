@@ -1,0 +1,11 @@
+/runs/
+/data/
+/release/hf/build/
+/release/github/
+/third_party/EarthDial/
+/third_party/GeoChat/
+*.pt
+*.pt.tmp
+__pycache__/
+*.egg-info/
+.pytest_cache/
