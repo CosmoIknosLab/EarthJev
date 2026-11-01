@@ -215,8 +215,17 @@ bash scripts/analysis/submit_msi.sh rules runs/seg/<run>
 
 ## Data and licenses
 
-The code is released under the Apache-2.0 license (see `LICENSE` and `NOTICE`). No data are redistributed here. The scripts download the following datasets from their official sources; please cite them:
-BigEarthNet v2.0 and BigEarthNet.txt (CDLA-Permissive-1.0; labels from CORINE Land Cover, © European Union, Copernicus Land Monitoring Service), RSVQAxBEN (CC-BY-4.0), EuroSAT and EuroSAT-MS (MIT; Sentinel data under the Copernicus terms).
+The code is released under the [Apache-2.0 license](LICENSE); the EarthJev weights on Hugging Face are released under
+Apache-2.0, like the Qwen3.5-0.8B model they are fine-tuned from. Full notices are in [`NOTICE`](NOTICE).
+
+- **Data** are not redistributed here: the scripts download them from their official sources; please cite them.
+  BigEarthNet v2.0 and BigEarthNet.txt (CDLA-Permissive-1.0), RSVQAxBEN (CC BY 4.0), EuroSAT and EuroSAT-MS (MIT).
+- **Attribution.** Contains modified Copernicus Sentinel data 2017-2018 (BigEarthNet v2.0 patches, including the
+  example in the framework figure). CORINE Land Cover 2018: © European Union, Copernicus Land Monitoring Service 2018,
+  European Environment Agency (EEA).
+- **Baseline models** are downloaded from their official sources and keep their own licenses. Note that
+  MambaVision-T-1K is under the NVIDIA Source Code License-NC (non-commercial use only); see `NOTICE` for the others.
+- **Logos** belong to their institutions and are not covered by the Apache license.
 
 ## Acknowledgements
 

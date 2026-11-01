@@ -1,9 +1,27 @@
 EarthJev
 Copyright 2026 Domenico Benfenati, Antonio Maria Rinaldi, Cristian Tommasino (University of Naples Federico II)
 
-This repository contains code that builds on:
-- OneJev (OmniJev), Apache License 2.0, https://github.com/OmniJev/OneJev (git submodule, unmodified)
-- Qwen3.5-0.8B (Qwen team, Alibaba), Apache License 2.0, used as the base model
-Data are not redistributed here. Training and evaluation use BigEarthNet v2.0 and BigEarthNet.txt (CDLA-Permissive-1.0),
-whose labels derive from CORINE Land Cover (© European Union, Copernicus Land Monitoring Service), RSVQAxBEN
-(CC-BY-4.0), EuroSAT and EuroSAT-MS (MIT).
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party code
+- OneJev (OmniJev), Apache License 2.0, https://github.com/OmniJev/OneJev. Included as a git submodule, unmodified;
+  see third_party/OneJev/LICENSE.
+
+Third-party models: downloaded by the scripts from their official sources, not redistributed here, each under its
+own license.
+- Qwen3.5-0.8B (Qwen team, Alibaba Cloud), Apache License 2.0: base model of EarthJev.
+- Baselines: Qwen3-VL-2B-Instruct (Apache License 2.0); InternVL3-2B (OpenGVLab, license stated on its model card);
+  EarthDial-4B (code MIT, https://github.com/hiyamdebary/EarthDial; checkpoint akshaydudhane/EarthDial_4B_RGB, no
+  license tag on its model card); MambaVision-T-1K (NVIDIA Source Code License-NC, non-commercial use only); ResNet-50
+  and Swin-T ImageNet weights from torchvision; paraphrase-multilingual-MiniLM-L12-v2 (Apache License 2.0), question
+  encoder of the fixed-vocabulary baselines.
+
+Data: not redistributed here.
+- BigEarthNet v2.0 (reBEN) and BigEarthNet.txt: CDLA-Permissive-1.0. RSVQAxBEN: CC BY 4.0. EuroSAT and EuroSAT-MS: MIT.
+- Contains modified Copernicus Sentinel data 2017-2018 (BigEarthNet v2.0 patches, including the example patch in
+  docs/figures/earthjev_framework.png).
+- CORINE Land Cover 2018: (c) European Union, Copernicus Land Monitoring Service 2018, European Environment Agency (EEA).
+
+Logos
+The logos in docs/figures/logos belong to the University of Naples Federico II, DIETI and IKNOS Lab. They are used for
+identification only and are not covered by the Apache License.
