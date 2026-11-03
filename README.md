@@ -14,7 +14,7 @@ Department of Electrical Engineering and Information Technology (DIETI), Univers
   <img src="docs/figures/logos/iknos.png" height="72" alt="IKNOS Lab">
 </p>
 
-[![Paper](https://img.shields.io/badge/arXiv-coming_soon-b31b1b?logo=arxiv&logoColor=white)](#citation)
+[![Paper](https://img.shields.io/badge/arXiv-2611.02096-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2611.02096)
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-dBenf%2FEarthJev-ffc107)](https://huggingface.co/dBenf/EarthJev)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
@@ -26,7 +26,7 @@ Department of Electrical Engineering and Information Technology (DIETI), Univers
 
 ## News
 
-- **2026/11**: Code, results and the model weights ([🤗 dBenf/EarthJev](https://huggingface.co/dBenf/EarthJev)) released with the preprint.
+- **2026/11**: Code, results and the model weights ([🤗 dBenf/EarthJev](https://huggingface.co/dBenf/EarthJev)) released with the [preprint](https://arxiv.org/abs/2611.02096).
 
 ## Introduction
 
@@ -240,9 +240,9 @@ If you find this work useful, please cite:
 @article{benfenati2026earthjev,
   title   = {{EarthJev}: Calibrated, Non-Generative Answers to Natural-Language Questions about {Sentinel-2} Land Cover},
   author  = {Benfenati, Domenico and Rinaldi, Antonio Maria and Tommasino, Cristian},
-  journal = {arXiv preprint},
-  year    = {2026}
+  journal = {arXiv preprint arXiv:2611.02096},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2611.02096}
 }
 ```
 
-The arXiv identifier will be added when the preprint is released.
